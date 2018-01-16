@@ -25,34 +25,34 @@ TensorFlow是基于数据流图做计算的，看一下其中的各个要素。
  > 内核(kernel)是能够运行在特定设备device上的一种对操作的实现。因此，同一个操作可能会对应多个内核。
 
 ###### 目录结构
-c/
-cc/ - 采用C++进行训练的样例
-compiler/
-[contrib/](./contrib/)- 将常用功能封装在一起的高级API
-core/ - C++实现的主要目录
- - api_def
- - common_runtime
- - debug                        
- - distributed_runtime     
- - example                         
- - framework                      
- - graph - DAG图相关
- - grappler  
- - kernels - 核心Op，如【matmul, conv2d, argmax, batch_norm】等
- - lib - 基础公共库
-    - gtl - google template library, 包含array_slice/ iterator_range/ inlined_vector/ map_util/ stl_util等基础库
- - ops - 均为.cc文件，为基本op操作，如array_ops/ math_ops/ image_ops/ function_ops/ random_ops/ io_ops/ control_flow_ops/ data_flow_ops；以及定义了op梯度计算方式：array_grad/ math_grad/ functional_grad/ nn_grad/ random_grad
- - platform - 平台相关文件，如设备内存分配
- - profiler
- - protobuf - 均为.proto文件，用于数据传输时的结构序列化
- - public - 公共头文件，用于外部接口调用的API定义，主要是session.h/ tensor_c_api.h
- - user_ops - 用户自定义op           
- - util
-examples/ - 各种示例
-g3doc/ - 针对C++、python版本的代码文档
-go/
-java/
-python/ - python实现的主要目录
-stream_executor/ - 流处理
-> StreamExecutor is a unified wrapper around the CUDA and OpenCL host-side programming models (runtimes)
-tensorboard/ - App、Web支持，以及脚本支持
+ - c/
+ - cc/ - 采用C++进行训练的样例
+ - compiler/
+ - [contrib/](./contrib/) - 将常用功能封装在一起的高级API
+ - core/ - C++实现的主要目录
+	- api_def
+	- common_runtime - 公共运行库
+	- debug                        
+	- distributed_runtime - 分布式执行模块，包含grpc session/ grpc worker/ grpc master等    
+	- example                         
+	- framework - 基础功能模块                     
+	- graph - DAG图相关
+	- grappler
+	- kernels - 核心Op在CPU、CUDA内核上的实现，如[matmul, conv2d, argmax, batch_norm]等
+ 	- lib - 基础公共库
+    	- gtl - google template library, 包含array_slice/ iterator_range/ inlined_vector/ map_util/ stl_util等基础库
+ 	- ops - 基本op操作，如array_ops/ math_ops/ image_ops/ function_ops/ random_ops/ io_ops/ control_flow_ops/ data_flow_ops；以及定义了op梯度计算方式：array_grad/ math_grad/ functional_grad/ nn_grad/ random_grad
+ 	- platform - 操作系统实现相关文件，如设备内存分配
+ 	- profiler
+ 	- protobuf - 均为.proto文件，用于数据传输时的结构序列化
+ 	- public - 公共头文件，用于外部接口调用的API定义，主要是session.h/ tensor_c_api.h
+ 	- user_ops - 用户自定义op           
+ 	- util
+ - examples/ - 各种示例
+ - g3doc/ - 针对C++、python版本的代码文档
+ - go/
+ - java/
+ - python/ - python实现的主要目录
+ - stream_executor/ - 流处理
+	> StreamExecutor is a unified wrapper around the CUDA and OpenCL host-side programming models (runtimes)
+ - tensorboard/ - App、Web支持，以及脚本支持
