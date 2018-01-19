@@ -1,16 +1,16 @@
-###### 依赖工具
+### 依赖工具
 1. 自动化构建工具[Bazel](https://www.bazel.build/)
 2. 脚本语言调用c/cpp库工具[Swig](http://www.swig.org/)
 3. 矩阵处理工具[Eigen](http://eigen.tuxfamily.org)
 4. GPU加速计算库Nvidia-cuBLAS
 5. 结构化数据存储格式[protobuf](https://github.com/google/protobuf)
 
-###### 设计理念
+### 设计理念
  - 将图的定义和图的运行完全分开。
 > TensorFlow完全采用符号式编程，而其他深度学习框架中Torch是典型的命令式编程；Caffe、MXNet采用了两种编程模式混合的方法。
  - 涉及到的运算都要放在图中，而图的运行只发生在会话（session）中。
 
-###### 编程模型
+### 编程模型
 TensorFlow是基于数据流图做计算的，看一下其中的各个要素。
  - 边
  > Tensorflow的边有两种连接关系：数据依赖和控制依赖。控制依赖的边上没有数据流过，但源节点必须在目的节点开始执行前完成执行。
@@ -24,7 +24,7 @@ TensorFlow是基于数据流图做计算的，看一下其中的各个要素。
  - 内核
  > 内核(kernel)是能够运行在特定设备device上的一种对操作的实现。因此，同一个操作可能会对应多个内核。
 
-###### 目录结构
+### 目录结构
  - c/
  - cc/ - 采用C++进行训练的样例
  - compiler/
