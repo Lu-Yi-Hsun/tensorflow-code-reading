@@ -34,7 +34,8 @@ TensorFlow是基于数据流图做计算的，看一下其中的各个要素。
 	- common_runtime - 公共运行库
 	- debug                        
 	- distributed_runtime - 分布式执行模块，包含grpc session/ grpc worker/ grpc master等    
-	- example                         
+	- example
+		- [mnist](./contrib/mnist.md)                         
 	- framework - 基础功能模块                     
 	- graph - DAG图相关
 	- grappler
