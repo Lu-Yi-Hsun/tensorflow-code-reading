@@ -32,13 +32,13 @@ MNIST数据集是NIST数据集的子集，包含以下4个文件。
 4. 评估模型。tf.argmax(y,1)返回的是模型对任一输入 x 预测到的标记值。
     ```python
     Successfully downloaded train-images-idx3-ubyte.gz 9912422 bytes.
-    Extracting /tmp/tensorflow/mnist/input_data\train-images-idx3-ubyte.gz
+    Extracting /tmp/tensorflow/mnist/input_data/train-images-idx3-ubyte.gz
     Successfully downloaded train-labels-idx1-ubyte.gz 28881 bytes.
-    Extracting /tmp/tensorflow/mnist/input_data\train-labels-idx1-ubyte.gz
+    Extracting /tmp/tensorflow/mnist/input_data/train-labels-idx1-ubyte.gz
     Successfully downloaded t10k-images-idx3-ubyte.gz 1648877 bytes.
-    Extracting /tmp/tensorflow/mnist/input_data\t10k-images-idx3-ubyte.gz
+    Extracting /tmp/tensorflow/mnist/input_data/t10k-images-idx3-ubyte.gz
     Successfully downloaded t10k-labels-idx1-ubyte.gz 4542 bytes.
-    Extracting /tmp/tensorflow/mnist/input_data\t10k-labels-idx1-ubyte.gz
+    Extracting /tmp/tensorflow/mnist/input_data/t10k-labels-idx1-ubyte.gz
     0.9203
     ```
 
@@ -59,3 +59,6 @@ MNIST数据集是NIST数据集的子集，包含以下4个文件。
 对于卷积神经网络，当训练 100 轮后精确率已经接近99.22%。
 
  ##### RNN训练
+ 为了使用 RNN 来分类图片，我们把每张图片的行看成是一个像素序列（sequence）。因为
+MNIST 图片的大小是 28×28 像素，所以我们把每一个图像样本看成一行行的序列。因此， 共有
+（28 个元素的序列）×（28 行）， 然后每一步输入的序列长度是 28， 输入的步数是 28 步。
