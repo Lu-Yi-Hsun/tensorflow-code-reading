@@ -34,7 +34,8 @@ TensorFlow是基于数据流图做计算的，看一下其中的各个要素。
  - [contrib/](./contrib/) - 将常用功能封装在一起的高级API
  - core/ - C++实现的主要目录
 	- api_def
-	- common_runtime - 公共运行库
+	- [common_runtime](./common_runtime/) - 公共运行库
+		- [direct_session](./core/common_runtime/direct_session.md)
 	- debug                        
 	- distributed_runtime - 分布式执行模块，包含grpc session/ grpc worker/ grpc master等    
 	- example
