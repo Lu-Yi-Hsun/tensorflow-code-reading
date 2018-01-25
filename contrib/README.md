@@ -11,3 +11,4 @@
  - rnn: 这个包提供了额外的 RNN Cell， 也就是对 RNN隐藏层的各种改进， 如 LSTMBlockCell、GRUBlockCell、 FusedRNNCell、 GridLSTMCell、 AttentionCellWrapper 等；
  - seq2seq: 这个包提供了建立神经网络 seq2seq 层和损失函数的操作；
  - slim: TensorFlow-Slim是一个用于定义、训练和评估复杂模型的轻量级库。TF-Slim 现在已经被逐渐迁移到 /tensorflow/models/tree/master/slim 中，这里包含了几种广泛使用的卷积神经网络图像分类模型的代码，可以从头训练模型或者预训练模型开始微调；
+ - tensorboard/ - App、Web支持，以及脚本支持

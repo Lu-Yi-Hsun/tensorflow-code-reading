@@ -60,4 +60,5 @@ TensorFlow是基于数据流图做计算的，看一下其中的各个要素。
  - python/ - python实现的主要目录
  - stream_executor/ - 流处理
 	> StreamExecutor is a unified wrapper around the CUDA and OpenCL host-side programming models (runtimes)
- - tensorboard/ - App、Web支持，以及脚本支持
+ - tools
+ 	- [dist_test](./tools/dist_test/)
