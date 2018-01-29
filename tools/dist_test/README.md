@@ -42,6 +42,18 @@ CUDA_VISIBLE_DEVICES='1' python ./distributed_supervisor.py --ps_hosts=127.0.0.1
  - 第4步：构建要训练的模型，构建计算图；
  - 第5步：创建tf.train.Supervisor来管理模型的训练过程，创建一个supervisor来监督训练过程；
 
+##### 分布式示例
+本节以[mnist_replica](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/tools/dist_test/python/mnist_replica.py)为例来对MNIST数据集进行分布式训练。
+1. 在本机上开设3个端口作为分布式工作节点的部署，2222端口为参数服务器，2223端口为工作节点0，2224端口为工作节点1。 开启参数服务器ps后，会发现该进程挂起，等待工作节点服务中的进程开始训练；一共进行了200次迭代，其中工作节点1执行了169次迭代，工作节点2执行了34次迭代；
+```
+python mnist_replica.py --job_name="ps" --task_index=0
+python mnist_replica.py --job_name="worker" --task_index=0
+python mnist_replica.py --job_name="worker" --task_index=1
+```
+2. 根据命令行参数，用tf.train.ClusterSpec来创建TensorFlow的集群描述；
+3. 为本地执行的任务创建TensorFlow的Server对象。如果是参数服务器，直接启动即可，这时进程就会阻塞在这里。如果是worker，就执行后面的计算任务；
+4. 使用tf.train.replica_device_setter将涉及变量的操作分配到参数服务器上，并使用 CPU；将涉及非变量的操作分配到工作节点上，使用上一步 worker_device 的值；
+
 ### 参考文献
 1. Martín Abadi .etc TensorFlow: Large-Scale Machine Learning on Heterogeneous Distributed Systems
 2. [distributed_tensorflow](https://github.com/tobegit3hub/tensorflow_examples/tree/master/distributed_tensorflow)

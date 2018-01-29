@@ -18,4 +18,4 @@
 
 3. 了解Tensorflow的分布式模型，熟悉分布式版本的MNIST；
 
-4. 熟悉[Tensorflow源码结构](code_structure.md)，根据需要了解其源代码实现；
+4. 熟悉[Tensorflow源码结构](code_structure.md)，根据需要了解其源代码实现，一个非常推荐的办法是[Learning From PR](./learning_from_pr.md)；
