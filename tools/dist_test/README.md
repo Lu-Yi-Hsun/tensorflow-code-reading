@@ -3,11 +3,11 @@
 分布式是指训练在多个工作节点（worker）上。部署有以下两种方法。
 1. 设置 CUDA_VISIBLE_DEVICES 环境变量，限制各个工作节点只可见一个 GPU，启
 动进程时添加环境变量即可。
-```
-CUDA_VISIBLE_DEVICES='' python ./distributed_supervisor.py --ps_hosts=127.0.0.1:2222,127.0.0.1:2223 --worker_hosts=127.0.0.1:2224,127.0.0.1:2225 --job_name=ps --task_index=0
-CUDA_VISIBLE_DEVICES='0' python ./distributed_supervisor.py --ps_hosts=127.0.0.1:2222,127.0.0.1:2223 --worker_hosts=127.0.0.1:2224,127.0.0.1:2225 --job_name=worker --task_index=0
-CUDA_VISIBLE_DEVICES='1' python ./distributed_supervisor.py --ps_hosts=127.0.0.1:2222,127.0.0.1:2223 --worker_hosts=127.0.0.1:2224,127.0.0.1:2225 --job_name=worker --task_index=1
-```
+	```
+	CUDA_VISIBLE_DEVICES='' python ./distributed_supervisor.py --ps_hosts=127.0.0.1:2222,127.0.0.1:2223 --worker_hosts=127.0.0.1:2224,127.0.0.1:2225 --job_name=ps --task_index=0
+	CUDA_VISIBLE_DEVICES='0' python ./distributed_supervisor.py --ps_hosts=127.0.0.1:2222,127.0.0.1:2223 --worker_hosts=127.0.0.1:2224,127.0.0.1:2225 --job_name=worker --task_index=0
+	CUDA_VISIBLE_DEVICES='1' python ./distributed_supervisor.py --ps_hosts=127.0.0.1:2222,127.0.0.1:2223 --worker_hosts=127.0.0.1:2224,127.0.0.1:2225 --job_name=worker --task_index=1
+	```
 2. 使用 tf.device()指定使用特定的 GPU。
 
 分布式架构主要有客户端（client）和服务端（server）组成，服务端又包括主节点（master）和工作节点（worker）两者组成。
@@ -45,11 +45,11 @@ CUDA_VISIBLE_DEVICES='1' python ./distributed_supervisor.py --ps_hosts=127.0.0.1
 ##### 分布式示例
 本节以[mnist_replica](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/tools/dist_test/python/mnist_replica.py)为例来对MNIST数据集进行分布式训练。
 1. 在本机上开设3个端口作为分布式工作节点的部署，2222端口为参数服务器，2223端口为工作节点0，2224端口为工作节点1。 开启参数服务器ps后，会发现该进程挂起，等待工作节点服务中的进程开始训练；一共进行了200次迭代，其中工作节点1执行了169次迭代，工作节点2执行了34次迭代；
-```
-python mnist_replica.py --job_name="ps" --task_index=0
-python mnist_replica.py --job_name="worker" --task_index=0
-python mnist_replica.py --job_name="worker" --task_index=1
-```
+	```
+	python mnist_replica.py --job_name="ps" --task_index=0
+	python mnist_replica.py --job_name="worker" --task_index=0
+	python mnist_replica.py --job_name="worker" --task_index=1
+	```
 2. 根据命令行参数，用tf.train.ClusterSpec来创建TensorFlow的集群描述；
 3. 为本地执行的任务创建TensorFlow的Server对象。如果是参数服务器，直接启动即可，这时进程就会阻塞在这里。如果是worker，就执行后面的计算任务；
 4. 使用tf.train.replica_device_setter将涉及变量的操作分配到参数服务器上，并使用 CPU；将涉及非变量的操作分配到工作节点上，使用上一步 worker_device 的值；
