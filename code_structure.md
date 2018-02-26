@@ -54,7 +54,8 @@ TensorFlow是基于数据流图做计算的，看一下其中的各个要素。
  	- user_ops - 用户自定义op           
  	- util
  - examples/ - 各种示例
- - g3doc/ - 针对C++、python版本的代码文档
+ - docs_src/ - 针对C++、python版本的代码文档
+ 	- [tutorials](./docs_src/tutorials.md)
  - go/
  - java/
  - python/ - python实现的主要目录
